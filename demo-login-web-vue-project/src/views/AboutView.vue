@@ -4,12 +4,15 @@
     <h1>지티이노비젼의 위치</h1>
     <MapKakao :latitude="37.546194350143" :longitude="127.048432321547"></MapKakao>
   </div>
-  <button @click="onClickHandler">click</button>
+  <br />
+  <br />
+  <br />
+  <v-btn variant="tonal" @click="onClickHandler">click</v-btn>
 </template>
 
 <script setup>
 import { onMounted } from 'vue'
-import MapKakao from '../components/Map/MapKakao.vue'
+import MapKakao from '../components/Map/mapKakao.vue'
 import apikey from '../properties/apikey'
 
 onMounted(() => {})

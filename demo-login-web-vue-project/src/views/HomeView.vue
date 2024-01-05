@@ -1,9 +1,10 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import BottomSheet from '../components/UI/BottomSheet.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome msg="hi" />
+    <h2>Hi</h2>
+    <BottomSheet></BottomSheet>
   </main>
 </template>

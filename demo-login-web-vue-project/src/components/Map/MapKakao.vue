@@ -43,7 +43,7 @@ export default {
       const options = {
         //좌표값 설정
         center: new window.kakao.maps.LatLng(this.latitude, this.longitude),
-        level: 4
+        level: 3
       }
 
       this.map = new window.kakao.maps.Map(container, options)
@@ -64,7 +64,7 @@ export default {
 
 <style>
 #map {
-  width: 500px;
-  height: 500px;
+  width: 20rem;
+  height: 20rem;
 }
 </style>
