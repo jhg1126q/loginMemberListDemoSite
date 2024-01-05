@@ -1,36 +1,33 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    {{ check ? data : '데이터가 없습니다' }}
-    <input :placeholder="data" />
-    <div v-bind="componentTestData"></div>
-    <p v-if="check">확인하세용!</p>
-    <button @click="testCnt++">{{ testCnt }}</button>
+    <h1>지티이노비젼의 위치</h1>
+    <MapKakao :latitude="37.546194350143" :longitude="127.048432321547"></MapKakao>
   </div>
+  <button @click="onClickHandler">click</button>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
+import MapKakao from '../components/Map/MapKakao.vue'
+import apikey from '../properties/apikey'
 
-const data = ref(500)
-const check = ref(true)
-const testCnt = ref(0)
-const componentTestData = {
-  id: 'test',
-  class: 'test'
+onMounted(() => {})
+
+function onClickHandler() {
+  fetch('https://dapi.kakao.com/v2/local/search/address.json?query=' + apikey.address, {
+    method: 'GET',
+    headers: {
+      Authorization: 'KakaoAK ' + apikey.restapi
+    }
+  })
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      console.log(data.documents)
+    })
 }
-
-onMounted(() => {
-  fn_test()
-})
-
-const fn_test = () => {
-  console.log('init test :::: ')
-  console.log('this is vue testing')
-  console.log('mounting')
-}
-
-console.log('this is global area down of mount!')
 </script>
 
 <style>
