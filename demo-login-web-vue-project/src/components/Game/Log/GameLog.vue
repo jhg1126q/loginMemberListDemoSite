@@ -6,10 +6,12 @@ const props = defineProps({
 })
 
 function classColor(target, type) {
+  // 타겟이 monster
   if (target === 'monster') {
     return 'log--monster'
   }
 
+  // 타겟이 monster가 아니면
   if (type === 'attack') {
     return `log--damage`
   }

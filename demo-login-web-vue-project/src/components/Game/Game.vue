@@ -4,12 +4,22 @@ import GameLog from './Log/GameLog.vue'
 import { computed, ref } from 'vue'
 import BottomSheet from '../UI/BottomSheet.vue'
 
-const playerHealth = ref(100)
-const monsterHealth = ref(100)
-const playLog = ref([])
-const attackPoint = ref(0)
-const resultMessage = ref('')
+const playerHealth = ref(100) // 플레이어 체력바
+const monsterHealth = ref(100) // 몬스터 체력바
+const playLog = ref([]) // 플레이 로그
 
+// 게임 플레이 추가 요소
+const attackPoint = ref(0) // 공격 점수
+const resultMessage = ref('') // 결과 메세지
+
+//----------------------------------------------------------------//
+
+/*----------------------------------------------------------------
+  title : fn_printLog
+  param : target - 행동대상,  type - 행동명칭, size - 행동수치
+  description : game에서의 행동 데이터들을 로그로 저장합니다
+  author : B102030
+----------------------------------------------------------------*/
 function fn_printLog(target, type, size) {
   playLog.value.unshift({
     target,
@@ -18,6 +28,12 @@ function fn_printLog(target, type, size) {
   })
 }
 
+/*----------------------------------------------------------------
+  title : getRandomValue
+  param : min - 최소값,  max - 최대값
+  description : 랜덤한 값을 가져옵니다
+  author : B102030
+----------------------------------------------------------------*/
 function getRandomValue(min, max) {
   return Math.floor(Math.random() * (max - min) + min)
 }
