@@ -1,10 +1,10 @@
 <script setup>
+import Game from '../components/Game/Game.vue'
 import BottomSheet from '../components/UI/BottomSheet.vue'
 </script>
 
 <template>
   <main>
-    <h2>Hi</h2>
-    <BottomSheet></BottomSheet>
+    <Game></Game>
   </main>
 </template>
