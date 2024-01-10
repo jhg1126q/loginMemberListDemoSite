@@ -1,11 +1,31 @@
+<!----------------------------------------------------------------
+  File Name : PlayerSection
+  Description : 화면에 표시될 타겟의 UI 파트입니다
+  Author : B102030
+  Create Date : 2024-01-10
+  Update Date : 2024-01-10
+---------------------------------------------------------------->
+
 <script setup>
 import { computed } from 'vue'
 
+/*----------------------------------------------------------------
+  props 설명
+
+  - type : 타겟 타입
+  - value : 타겟 Health Point( HP )
+----------------------------------------------------------------*/
 const props = defineProps({
   type: String,
   value: Number
 })
 
+/*----------------------------------------------------------------
+  title : computeHealthBar
+  description : 체력바를 조절합니다.
+  author : B102030
+  date : 2024-01-10
+----------------------------------------------------------------*/
 const computeHealthBar = computed(() => {
   return { width: `${props.value}%` }
 })
