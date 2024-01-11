@@ -8,10 +8,8 @@
 
 <script setup>
 import PlayerSection from './Player/PlayerSection.vue'
-import GameLog from './Log/GameLog.vue'
-import { computed, ref } from 'vue'
-import BottomSheet from '../UI/BottomSheet.vue'
 import BasicModal from '../Modal/BasicModal.vue'
+import { computed, ref } from 'vue'
 
 const playerHealth = ref(100) // 플레이어 체력바
 const monsterHealth = ref(100) // 몬스터 체력바
@@ -103,6 +101,7 @@ function getRandomValue(min, max) {
   date : 2024-01-10
 ----------------------------------------------------------------*/
 function fn_checkHealth() {
+  let resultMsg = ''
   if (playerHealth.value > 100) {
     playerHealth.value = 100
   }
@@ -114,16 +113,20 @@ function fn_checkHealth() {
     // draw
     playerHealth.value = 0
     monsterHealth.value = 0
-    fn_endGame('draw')
+    resultMsg = 'draw'
   } else if (playerHealth.value <= 0) {
     playerHealth.value = 0
     // lose
-    fn_endGame('lose')
+    resultMsg = 'lose'
   } else if (monsterHealth.value <= 0) {
     monsterHealth.value = 0
     // win
-    fn_endGame('win')
+    resultMsg = 'win'
+  } else {
+    return
   }
+
+  fn_endGame(resultMsg)
 }
 
 /*----------------------------------------------------------------
@@ -274,6 +277,13 @@ function fn_reset() {
   playLog.value = []
 }
 
+defineExpose({
+  playLogFn: function () {
+    return playLog.value
+  },
+  playLog
+})
+
 /*----------------------------------------------------------------
   title : onCloseHandler
   param : none
@@ -307,9 +317,6 @@ function onCloseHandler() {
         <v-btn @click="fn_reset"> reset</v-btn>
       </template>
     </section>
-    <BottomSheet btnTxt="BattleLog">
-      <GameLog :log="playLog"></GameLog>
-    </BottomSheet>
   </div>
   <BasicModal
     ref="modalRef"

@@ -17,7 +17,8 @@ import { computed } from 'vue'
 ----------------------------------------------------------------*/
 const props = defineProps({
   type: String,
-  value: Number
+  value: Number,
+  point: Number
 })
 
 /*----------------------------------------------------------------
@@ -29,6 +30,10 @@ const props = defineProps({
 const computeHealthBar = computed(() => {
   return { width: `${props.value}%` }
 })
+
+const computeAttackPoint = computed(() => {
+  return { width: `${props.point}%` }
+})
 </script>
 
 <template>
@@ -36,6 +41,9 @@ const computeHealthBar = computed(() => {
     <h2>{{ props.type }} Health</h2>
     <div class="healthbar">
       <div class="healthbar__value" :style="computeHealthBar"></div>
+    </div>
+    <div v-show="props.point" class="healthbar">
+      <div class="healthbar__remain" :style="computeAttackPoint"></div>
     </div>
     <p>{{ props.value }}</p>
   </section>
@@ -58,6 +66,12 @@ section {
 
 .healthbar__value {
   background-color: #00a876;
+  width: 100%;
+  height: 100%;
+}
+
+.healthbar__remain {
+  background-color: coral;
   width: 100%;
   height: 100%;
 }

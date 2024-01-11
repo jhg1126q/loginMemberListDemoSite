@@ -7,11 +7,30 @@
 ---------------------------------------------------------------->
 
 <script setup>
+import { computed, ref, toRaw } from 'vue'
 import Game from '../components/Game/Game.vue'
+import GameLog from '../components/Game/Log/GameLog.vue'
+
+const gameRef = ref(null)
+const computedGameLog = computed(() => {
+  return []
+})
+const onClickTestEvent = () => {
+  console.log('hi ::::: ')
+  console.log(gameRef.value.playLogFn())
+  console.log(toRaw(gameRef.value.playLog))
+}
 </script>
 
 <template>
   <main>
-    <Game></Game>
+    <Game ref="gameRef"></Game>
+    <GameLog :log="computedGameLog"></GameLog>
   </main>
+  <v-btn @click="onClickTestEvent">test </v-btn>
 </template>
+<style scoped>
+main {
+  display: flex;
+}
+</style>
