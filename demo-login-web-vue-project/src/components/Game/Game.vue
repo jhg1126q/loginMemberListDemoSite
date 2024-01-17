@@ -20,6 +20,7 @@ const attackPoint = ref(0) // 공격 점수
 const resultMessage = ref('') // 결과 메세지
 
 const modalRef = ref(null)
+const emits = defineEmits(['logtr'])
 
 //----------------------------------------------------------------//
 
@@ -170,6 +171,7 @@ function fn_round(type) {
   fn_monsterAttack()
 
   fn_checkHealth()
+  emits('logtr')
 }
 
 /*----------------------------------------------------------------
@@ -275,6 +277,7 @@ function fn_reset() {
   monsterHealth.value = 100
   attackPoint.value = 0
   playLog.value = []
+  emits('logtr')
 }
 
 defineExpose({
@@ -297,40 +300,46 @@ function onCloseHandler() {
 </script>
 
 <template>
-  <div id="game">
-    <PlayerSection type="monster" :value="monsterHealth"></PlayerSection>
-    <PlayerSection type="player" :value="playerHealth"></PlayerSection>
-    <section id="controls">
-      <template v-if="resultMessage.length == 0">
-        <v-btn id="attack" @click="onClickAtttackHandler">ATTACK</v-btn>
-        <v-btn id="special" :disabled="fn_specialAttackDisabled" @click="onClickSpAtttackHandler"
-          >SPECIAL ATTACK</v-btn
-        >
-        <v-btn id="fatal" :disabled="fn_fatalAttackDisabled" @click="onClickFtAtttackHandler"
-          >Fatal ATTACK</v-btn
-        >
-        <v-btn id="heal" :disabled="fn_healDisabled" @click="onClickHealHandler">HEAL</v-btn>
-        <v-btn id="surrender" @click="onClickSurrenderHandler">SURRENDER</v-btn>
+  <div>
+    <div id="game">
+      <PlayerSection type="monster" :value="monsterHealth"></PlayerSection>
+      <PlayerSection type="player" :value="playerHealth"></PlayerSection>
+      <section id="controls">
+        <template v-if="resultMessage.length == 0">
+          <v-btn id="attack" @click="onClickAtttackHandler">ATTACK</v-btn>
+          <v-btn id="special" :disabled="fn_specialAttackDisabled" @click="onClickSpAtttackHandler"
+            >SPECIAL ATTACK</v-btn
+          >
+          <v-btn id="fatal" :disabled="fn_fatalAttackDisabled" @click="onClickFtAtttackHandler"
+            >Fatal ATTACK</v-btn
+          >
+          <v-btn id="heal" :disabled="fn_healDisabled" @click="onClickHealHandler">HEAL</v-btn>
+          <v-btn id="surrender" @click="onClickSurrenderHandler">SURRENDER</v-btn>
+        </template>
+        <template v-else>
+          <br />
+          <v-btn @click="fn_reset"> reset</v-btn>
+        </template>
+      </section>
+    </div>
+    <BasicModal
+      ref="modalRef"
+      title="알림"
+      btn-txt="닫기"
+      :card-text="resultMessage"
+      @on-close="onCloseHandler"
+      ><template #contents>
+        <p>{{ resultMessage }}</p>
       </template>
-      <template v-else>
-        <br />
-        <v-btn @click="fn_reset"> reset</v-btn>
-      </template>
-    </section>
+    </BasicModal>
   </div>
-  <BasicModal
-    ref="modalRef"
-    title="알림"
-    btn-txt="닫기"
-    :card-text="resultMessage"
-    @on-close="onCloseHandler"
-    ><template #contents>
-      <p>{{ resultMessage }}</p>
-    </template>
-  </BasicModal>
 </template>
 
 <style scoped>
+#game {
+  width: 100%;
+}
+
 section {
   width: 90%;
   max-width: 40rem;

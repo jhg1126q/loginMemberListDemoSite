@@ -82,4 +82,8 @@ defineExpose({
 .btngroup {
   justify-content: right;
 }
+
+slot {
+  text-align: center;
+}
 </style>
