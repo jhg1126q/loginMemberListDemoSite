@@ -20,7 +20,7 @@ const attackPoint = ref(0) // 공격 점수
 const resultMessage = ref('') // 결과 메세지
 
 const modalRef = ref(null)
-const emits = defineEmits(['logtr'])
+const emits = defineEmits(['logtr']) // 배열 형태로 선언할 것 << 그냥 선언할 시에는 warning 이 나옴
 
 //----------------------------------------------------------------//
 
@@ -114,15 +114,15 @@ function fn_checkHealth() {
     // draw
     playerHealth.value = 0
     monsterHealth.value = 0
-    resultMsg = 'draw'
+    resultMsg = '드로우'
   } else if (playerHealth.value <= 0) {
     playerHealth.value = 0
     // lose
-    resultMsg = 'lose'
+    resultMsg = 'PLAYER 패배'
   } else if (monsterHealth.value <= 0) {
     monsterHealth.value = 0
     // win
-    resultMsg = 'win'
+    resultMsg = 'PLAYER 승리'
   } else {
     return
   }
@@ -329,7 +329,7 @@ function onCloseHandler() {
       :card-text="resultMessage"
       @on-close="onCloseHandler"
       ><template #contents>
-        <p>{{ resultMessage }}</p>
+        <p style="text-align: center">{{ resultMessage }}</p>
       </template>
     </BasicModal>
   </div>
