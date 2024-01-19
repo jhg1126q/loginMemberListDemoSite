@@ -27,11 +27,11 @@
     <v-main class="bg-grey-lighten-3">
       <v-container>
         <v-row class="d-flex" justify="center">
-          <v-menu v-model="showMenu" absolute offset-y style="max-width: 600px">
+          <v-menu v-model="showMenu" absolute offset-y :position-x="x" :position-y="y">
             <template v-slot:activator="{ props }">
               <v-card
                 class="portrait"
-                image="https://cdn.vuetifyjs.com/images/cards/girl.jpg"
+                image="https://publicdomainvectors.org/photos/monsterhand.png"
                 height="300"
                 width="600"
                 v-bind="props"
@@ -87,12 +87,7 @@ const linkData = [
 ]
 
 const showMenu = ref(false)
-const items = [
-  { title: 'Click Me' },
-  { title: 'Click Me' },
-  { title: 'Click Me' },
-  { title: 'Click Me 2' }
-]
+const items = [{ title: '몬스터 정보' }, { title: '몬스터 상세보기' }, { title: '닫기' }]
 const x = ref(0)
 const y = ref(0)
 function show(e) {
