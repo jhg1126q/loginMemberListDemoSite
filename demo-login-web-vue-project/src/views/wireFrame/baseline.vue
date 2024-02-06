@@ -1,15 +1,12 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer">
-      <!--  -->
-    </v-navigation-drawer>
-
-    <v-app-bar>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <v-app-bar-title>Application</v-app-bar-title>
-    </v-app-bar>
-
+    <custom-side-drawer :drawer="drawer" @click="menuClickHandler">
+      <li>list</li>
+    </custom-side-drawer>
+    <custom-app-bar-basic
+      title="Test Application"
+      @clickMenu="menuClickHandler"
+    ></custom-app-bar-basic>
     <v-main>
       <!--  -->
     </v-main>
@@ -17,13 +14,19 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+import { ref } from 'vue'
+import CustomSideDrawer from '../../components/UI/Menu/SideDrawer.vue'
+import CustomAppBarBasic from '../../components/UI/Header/AppBarBasic.vue'
 
-  const drawer = ref(null)
+const drawer = ref(false)
+
+function menuClickHandler() {
+  drawer.value = !drawer.value
+}
 </script>
 
 <script>
-  export default {
-    data: () => ({ drawer: null }),
-  }
+export default {
+  data: () => ({ drawer: null })
+}
 </script>
