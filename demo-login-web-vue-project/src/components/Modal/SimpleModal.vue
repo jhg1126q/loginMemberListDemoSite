@@ -27,7 +27,6 @@ const onClickNegetiveBtnHandler = (event) => {
 <template>
   <v-sheet
     v-show="onShow"
-    border="md"
     class="pa-6 text-white mx-auto"
     color="#141518"
     max-width="400"
@@ -39,9 +38,7 @@ const onClickNegetiveBtnHandler = (event) => {
 
       <br />
       <br />
-
-      Please read our <a href="/about" class="text-red-accent-2">Privacy Policy</a> to learn about
-      our privacy practices or click "Your Preferences" to exercise control over your data.
+      안녕하세요
     </p>
 
     <v-btn
