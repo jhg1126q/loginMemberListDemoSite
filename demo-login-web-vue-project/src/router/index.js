@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import mainRouter from './Main/main-router'
+import boardRouter from './Board/board-router'
+import userRouter from './User/user-router'
 
 /*
  * 선언하는 방식이 두개가 있다
@@ -10,6 +12,8 @@ import mainRouter from './Main/main-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    ...boardRouter,
+    ...userRouter,
     ...mainRouter,
     {
       path: '/',

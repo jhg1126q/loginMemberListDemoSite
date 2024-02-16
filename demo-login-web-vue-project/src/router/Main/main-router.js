@@ -5,6 +5,11 @@ const mainRouter = [
     component: () => import('../../views/MainView.vue')
   },
   {
+    path: '/mainLanding',
+    name: 'MainLanding',
+    component: () => import('../../pages/Comm/LandingPage.vue')
+  },
+  {
     path: '/test1',
     name: 'Test1',
     component: () => import('../../views/wireFrame/baseline.vue')

@@ -18,7 +18,7 @@ onMounted(() => {
   console.log('list 가져옵니다 ')
 
   //TODO: 권한 조회를 통해 목록 리스트를 가져오는 단계 작성 필요
-  list.value = ['1', '2', '3']
+  list.value = ['Home', 'Battle', 'User', 'Board']
 })
 </script>
 
