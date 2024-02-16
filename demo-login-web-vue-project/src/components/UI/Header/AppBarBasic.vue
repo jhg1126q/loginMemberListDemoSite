@@ -11,13 +11,10 @@ function clickLeftMenuHandler() {
   emits('clickMenu')
 }
 
-function clickTitleHandler() {
-  console.log('테스트')
-}
+function clickTitleHandler() {}
 onMounted(() => {
-  console.log('list 가져옵니다 ')
-
-  //TODO: 권한 조회를 통해 목록 리스트를 가져오는 단계 작성 필요
+  // TODO: 권한 조회를 통해 목록 리스트를 가져오는 단계 작성 필요
+  // EX) 관리자일 경우 관리자 화면 목록에 추가되어 전개
   list.value = ['Home', 'Battle', 'User', 'Board']
 })
 </script>
