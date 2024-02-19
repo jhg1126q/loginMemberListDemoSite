@@ -28,17 +28,6 @@
       <v-container>
         <v-row class="d-flex" justify="center">
           <v-menu v-model="showMenu" absolute offset-y :position-x="x" :position-y="y">
-            <template v-slot:activator="{ props }">
-              <v-card
-                class="portrait"
-                image="https://publicdomainvectors.org/photos/monsterhand.png"
-                height="300"
-                width="600"
-                v-bind="props"
-                @contextmenu="show"
-              ></v-card>
-            </template>
-
             <v-list>
               <v-list-item v-for="(item, index) in items" :key="index">
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -46,6 +35,7 @@
             </v-list>
           </v-menu>
         </v-row>
+
         <v-row>
           <v-col cols="2">
             <v-sheet rounded="lg">
@@ -61,8 +51,6 @@
 
           <v-col>
             <v-sheet min-height="70vh" rounded="lg" style="display: flex">
-              <!--  -->
-
               <Game ref="gameRef" @logtr="testfunction" />
               <GameLog :log="testList"></GameLog>
             </v-sheet>
@@ -77,6 +65,7 @@
 import { nextTick, ref } from 'vue'
 import Game from '../components/Game/Game.vue'
 import GameLog from '../components/Game/Log/GameLog.vue'
+import CatImg from '../assets/catprofile.png'
 
 const links = ['Dashboard', 'Messages', 'Profile', 'Updates']
 const linkData = [

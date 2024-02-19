@@ -26,32 +26,13 @@
           <v-col cols md="10">
             <v-sheet min-height="70vh" rounded="lg">
               <v-row ma="1 rem">
-                <v-slide-group show-arrows>
-                  <v-slide-group-item v-for="n in 9" :key="n">
-                    <v-sheet
-                      color="grey-lighten-1"
-                      height="200"
-                      rounded
-                      width="250"
-                      @click="toggle(n)"
-                      :class="['ma-3']"
-                    ></v-sheet>
-                  </v-slide-group-item>
-                </v-slide-group>
+                <basic-slide :data-list="dataList"></basic-slide>
               </v-row>
               <v-row ma="5rem">
-                <v-col class="mt-2" cols="12">
-                  <strong>Monsters</strong>
-                </v-col>
-
-                <v-col v-for="j in 4" :key="`${j}`" cols="6" md="2">
-                  <v-sheet height="150" color="grey"></v-sheet>
-                </v-col>
+                <list-with-title-vue title="Monsterss" :data-list="dataList"></list-with-title-vue>
               </v-row>
-              {{ clickData }}
             </v-sheet>
           </v-col>
-
           <v-col cols="6" md="2">
             <v-sheet rounded="lg" min-height="30%">
               <v-list-item v-for="n in 3" :key="n" link :title="`사이드 ${n}`"></v-list-item>
@@ -64,9 +45,11 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue'
 import CustomSideDrawer from '../../components/UI/Menu/SideDrawer.vue'
 import CustomAppBarBasic from '../../components/UI/Header/AppBarBasic.vue'
-import { ref } from 'vue'
+import BasicSlide from '../../components/UI/Slide/BasicSlide.vue'
+import ListWithTitleVue from '../../components/UI/List/ListWithTitle.vue'
 
 const items = [
   {
@@ -76,14 +59,13 @@ const items = [
   }
 ]
 const drawer = ref(false)
-const clickData = ref('아직 클릭 안됨')
+const dataList = ref([])
+
+onMounted(() => {
+  dataList.value = [{ key: 1 }, { key: 2 }, { key: 3 }, { key: 4 }, { key: 5 }]
+})
 
 function menuClickHandler() {
   drawer.value = !drawer.value
-}
-
-function toggle(ind) {
-  console.log('data')
-  clickData.value = 'click ::: ' + ind + '번째 데이터'
 }
 </script>
