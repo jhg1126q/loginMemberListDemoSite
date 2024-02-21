@@ -35,7 +35,7 @@
           </v-col>
           <v-col cols="6" md="2">
             <v-sheet rounded="lg" min-height="30%">
-              <v-list-item v-for="n in 3" :key="n" link :title="`사이드 ${n}`"></v-list-item>
+              <div @click="onClickHandler" class="animated"><p>안녕하세요</p></div>
             </v-sheet>
           </v-col>
         </v-row>
@@ -68,4 +68,14 @@ onMounted(() => {
 function menuClickHandler() {
   drawer.value = !drawer.value
 }
+
+const onClickHandler = () => {
+  console.log('1')
+}
 </script>
+
+<style scoped>
+.animated {
+  transform: translateX(-50px);
+}
+</style>
