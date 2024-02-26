@@ -8,6 +8,11 @@ const mainRouter = [
     path: '/mainLanding',
     name: 'MainLanding',
     component: () => import('../../pages/Comm/LandingPage.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../../pages/Comm/LoginPage.vue')
   }
 ]
 

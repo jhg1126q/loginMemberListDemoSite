@@ -30,10 +30,16 @@ function classColor(target, type) {
 <template>
   <section id="log" class="container">
     <h2>Battle Log</h2>
-    <ul v-for="(item, index) in props.log" :class="classColor(item.target, item.type)">
-      <li>{{ item.target }} 의 행동!</li>
-      <li>{{ item.size }} {{ item.type == 'heal' ? '회복' : '공격' }}</li>
-    </ul>
+    <TransitionGroup name="list" tag="ul">
+      <ul
+        v-for="(item, index) in props.log"
+        :class="classColor(item.target, item.type)"
+        :key="index"
+      >
+        <li>{{ item.target }} 의 행동!</li>
+        <li>{{ item.size }} {{ item.type == 'heal' ? '회복' : '공격' }}</li>
+      </ul>
+    </TransitionGroup>
   </section>
 </template>
 
@@ -86,5 +92,17 @@ section::-webkit-scrollbar-track {
 
 .log--heal {
   color: green;
+}
+
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>

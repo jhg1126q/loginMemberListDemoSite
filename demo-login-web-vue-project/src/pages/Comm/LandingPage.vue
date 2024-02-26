@@ -35,7 +35,10 @@
           </v-col>
           <v-col cols="6" md="2">
             <v-sheet rounded="lg" min-height="30%">
-              <div @click="onClickHandler" class="animated"><p>안녕하세요</p></div>
+              <transition name="slide-fade">
+                <div v-show="show"><p>안녕하세요</p></div>
+              </transition>
+              <v-btn @click="onClickHandler">ss</v-btn>
             </v-sheet>
           </v-col>
         </v-row>
@@ -59,6 +62,7 @@ const items = [
   }
 ]
 const drawer = ref(false)
+const show = ref(false)
 const dataList = ref([])
 
 onMounted(() => {
@@ -71,11 +75,42 @@ function menuClickHandler() {
 
 const onClickHandler = () => {
   console.log('1')
+  show.value = !show.value
 }
 </script>
 
 <style scoped>
-.animated {
-  transform: translateX(-50px);
+.animated-enter-active {
+  transform: animate-in 0.5s;
+}
+
+.animated-leave-active {
+  transform: animate-in 0.5s reverse;
+}
+
+@keyframes animate-in {
+  0% {
+    transform: translateX(-50px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>
