@@ -1,10 +1,9 @@
 <script setup>
-import Game from '../components/Game/Game.vue'
-import BottomSheet from '../components/UI/BottomSheet.vue'
+import InputBank from '../components/UI/InputBank.vue';
 </script>
 
 <template>
   <main>
-    <Game></Game>
+    <InputBank></InputBank>
   </main>
 </template>
