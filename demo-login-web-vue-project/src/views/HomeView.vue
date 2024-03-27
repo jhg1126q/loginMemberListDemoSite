@@ -7,17 +7,26 @@
 ---------------------------------------------------------------->
 
 <script setup>
-import Game from '../components/Game/Game.vue'
+
 </script>
 
 <template>
   <main>
-    <Game></Game>
+    <v-btn size="x-large" to="front"> Game</v-btn>
+    <br>
+    <v-btn size="x-large" to="main"> Main</v-btn>
+    <br>
+    <v-btn size="x-large" to="mainLanding"> MainLanding</v-btn>
+    <br>
+    <v-btn size="x-large" to="login"> login</v-btn>
+    <br>
+    <v-btn size="x-large" to="front"> front</v-btn>
   </main>
 </template>
 
 <style scoped>
 main {
-  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

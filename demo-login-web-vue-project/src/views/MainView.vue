@@ -62,12 +62,10 @@
 </template>
 
 <script setup>
-import { nextTick, ref } from 'vue'
+import {  ref } from 'vue'
 import Game from '../components/Game/Game.vue'
 import GameLog from '../components/Game/Log/GameLog.vue'
-import CatImg from '../assets/catprofile.png'
 
-const links = ['Dashboard', 'Messages', 'Profile', 'Updates']
 const linkData = [
   { link: '/', name: 'MainBoard' },
   { link: '/dungeon', name: 'Dungeon' },
@@ -79,15 +77,6 @@ const showMenu = ref(false)
 const items = [{ title: '몬스터 정보' }, { title: '몬스터 상세보기' }, { title: '닫기' }]
 const x = ref(0)
 const y = ref(0)
-function show(e) {
-  e.preventDefault()
-  showMenu.value = false
-  x.value = e.clientX
-  y.value = e.clientY
-  nextTick(() => {
-    showMenu.value = true
-  })
-}
 
 const drawer = ref(false)
 const gameRef = ref(null)
